@@ -5,7 +5,28 @@ namespace CharacterLibrary
     {
         public Character()
         {
+            _strength = 3;
+            _intelligence = 3;
+            _wisdom = 3;
+            _dexterity = 3;
+            _constitution = 3;
+            _charisma = 3;
         }
+
+        public Character(string name)
+        {
+            CharacterName = name;
+        }
+
+        public Character(string name, int str, int wis, int dex)
+        {
+            CharacterName = name;
+            _strength = str;
+            _wisdom = wis;
+            _dexterity = dex;
+        }
+
+        private Random rnd = new Random();
 
         public string CharacterName { get; set; }
 
@@ -126,6 +147,30 @@ namespace CharacterLibrary
             }
         }
 
+        public int ExperiencePoints { get; set; }
+        public int Level
+        {
+            get
+            {
+                return int.Parse(Math.Floor(ExperiencePoints / 1000d).ToString());
+            }
+        }
 
+        private int RollAttributeScore()
+        {
+            int score = rnd.Next(3, 18);
+
+            return score;
+        }
+
+        public void GenerateCharacter()
+        {
+            Strength = RollAttributeScore();
+            Intelligence = RollAttributeScore();
+            Wisdom = RollAttributeScore();
+            Dexterity = RollAttributeScore();
+            Constitution = RollAttributeScore();
+            Charisma = RollAttributeScore();
+        }
     }
 }
