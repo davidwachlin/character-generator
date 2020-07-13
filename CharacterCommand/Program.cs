@@ -7,7 +7,10 @@ namespace CharacterCommand
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var character = new Character();
+            character.GenerateCharacter();
+            Console.WriteLine(character.ToString());
+
         }
     }
 }
